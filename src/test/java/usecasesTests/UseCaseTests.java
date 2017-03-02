@@ -54,16 +54,7 @@ public class UseCaseTests {
 					ex.printStackTrace();
 					assertEquals(1,0);
 				}
-				/*
-				System.out.println("Reading File: " +temp.getName());
-				System.out.println();
-				while(fileScanner.hasNext()){
-					System.out.println(fileScanner.nextLine());
-				}
-				System.out.println();
-				*/
-				
-				
+		
 				graphCreator = new GraphCreator();
 				graphCreator.captureInput(fileScanner);
 				
@@ -77,23 +68,7 @@ public class UseCaseTests {
 		
 		
 		
-		//assertTrue(dir.
-		//String[] test = {"ale","tonto"};
-		//assertTrue(test.length>3);
-		//IsEqual("tonto",1,1);
-		//assertEquals(true,(dir=new File(dirAddress)).listFiles().lenght);
 		
-		
-		
-		//if ((dir=new File(dirAddress)).exists()){
-			//System.out.println("The directory exists");
-		//}
-		//else {
-			//System.out.println("The directory does not exists");
-		//}
-		//testFile("alejandro","alejandro");
-		//testFile("palacios","palacios");
-		//assertEquals(2,2);
 		
 	}
 	

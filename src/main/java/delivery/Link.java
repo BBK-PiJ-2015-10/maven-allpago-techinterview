@@ -6,14 +6,14 @@ public class Link<T1,T2 extends Number> {
 	
 	private T1 destination;
 	
-	private T2 length;
+	private T2 weight;
 
-	public T2 getLength() {
-		return length;
+	public T2 getWeight() {
+		return weight;
 	}
 
-	public void setLength(T2 length) {
-		this.length = length;
+	public void setLength(T2 weight) {
+		this.weight = weight;
 	}
 		
 	public void setSource(T1 source) {

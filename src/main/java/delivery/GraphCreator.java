@@ -2,7 +2,10 @@ package delivery;
 
 import java.util.Scanner;
 import java.util.Map;
+import java.text.NumberFormat;
 import java.util.HashMap;
+import java.text.ParseException;
+import java.util.Iterator;
 
 public class GraphCreator {
 	
@@ -21,6 +24,16 @@ public class GraphCreator {
 			for (int i=1;i<sentence.length;i++){
 				String[] linkData = sentence[i].split(distanceDelimeter);
 				String destNodeName = linkData[0];
+				Number linkWeight = null;
+				
+				try {
+					linkWeight = NumberFormat.getInstance().parse(linkData[1]);
+				} catch (ParseException ex){
+					System.out.println("Need to figure out how to handle this");
+				}
+				
+				
+			
 				Node destNode;
 				if (nodeMap.containsKey(destNodeName)){
 					destNode=nodeMap.get(destNodeName);
@@ -31,9 +44,9 @@ public class GraphCreator {
 				Link<Node,Number> newLink = new Link();
 				newLink.setSource(sourceNode);
 				newLink.setDestination(destNode);
+				newLink.setLength(linkWeight);
 				sourceNode.addLink(newLink);
-				//System.out.println("The label is " +linkData[0]);
-				//System.out.println("The cost is " +linkData[1]);
+				
 			}
 			nodeMap.put(sourceNodeName,sourceNode);
 		}
@@ -47,11 +60,28 @@ public class GraphCreator {
 				createNode(sentence);
 			}
 		}
-				
+		
+		printGraphTopology();
+		
+		
+	}
+	
+	public void printGraphTopology(){
+		
 		for (String value : nodeMap.keySet()){
 			System.out.print("Node named : " +value);
-			System.out.println(" has " +nodeMap.get(value).getLinks().size() +" links");
-			
+			Node tempNode = nodeMap.get(value);
+			System.out.println(" has " +tempNode.getLinks().size() +" links");
+			System.out.println("which are ");
+			Node<String> ok;
+			Link<Node,Integer> oktoo;
+			Iterator<Link<Node<String>,Integer>> iter = tempNode.getLinks().iterator();
+			while(iter.hasNext()){
+				
+				System.out.println("to " +iter.next().getOther(tempNode).getnodeID());
+		
+			}
+	
 		}
 		
 		System.out.println("I created " +nodeMap.size() +"nodes");
