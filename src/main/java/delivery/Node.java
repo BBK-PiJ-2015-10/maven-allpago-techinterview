@@ -3,19 +3,19 @@ package delivery;
 import java.util.Set;
 import java.util.HashSet;
 
-public class Node {
+public class Node<T> {
 	
-	private String nodeName;
+	private T nodeID;
 	
 	private Set<Link> links;
 	
-	public Node(String nodeName){
-		this.nodeName=nodeName;
+	public Node(T nodeID){
+		this.nodeID=nodeID;
 		links = new HashSet();
 	}
 	
-	public String getName(){
-		return this.nodeName;
+	public T getnodeID(){
+		return this.nodeID;
 	}
 	
 	public Set<Link> getLinks() {
@@ -28,7 +28,7 @@ public class Node {
 
 	@Override
 	public int hashCode(){
-		return nodeName.hashCode();
+		return nodeID.hashCode();
 	}
 	
 	@Override
@@ -39,8 +39,8 @@ public class Node {
 		if (!(input instanceof Node)){
 			return false;
 		}
-		String otherName = ((Node) input).getName();
-		return otherName.equals(this.nodeName);
+		Node otherNode = ( (Node) input);
+		return otherNode.nodeID.equals(this.nodeID);
 	}
 	
 

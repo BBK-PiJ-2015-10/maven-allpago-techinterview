@@ -1,30 +1,30 @@
 package delivery;
 
-public class Link {
+public class Link<T1,T2 extends Number> {
 	
-	private Node source;
+	private T1 source;
 	
-	private Node destination;
+	private T1 destination;
 	
-	private int length;
+	private T2 length;
 
-	public int getLength() {
+	public T2 getLength() {
 		return length;
 	}
 
-	public void setLength(int length) {
+	public void setLength(T2 length) {
 		this.length = length;
 	}
 		
-	public void setSource(Node source) {
+	public void setSource(T1 source) {
 		this.source = source;
 	}
 
-	public void setDestination(Node destination) {
+	public void setDestination(T1 destination) {
 		this.destination = destination;
 	}
 
-	public Node getOther(Node input){
+	public T1 getOther(T1 input){
 		if (input.equals(source)){
 			return destination;
 		}

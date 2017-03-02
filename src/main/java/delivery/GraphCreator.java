@@ -15,10 +15,27 @@ public class GraphCreator {
 	private Map<String,Node> nodeMap = new HashMap();
 	
 	private void createNode(String[] sentence){
-		String nodeName = sentence[0];
-		if (!nodeMap.containsKey(nodeName)){
-			Node newNode = new Node(nodeName);
-			nodeMap.put(nodeName,newNode);
+		String sourceNodeName = sentence[0];
+		if (!nodeMap.containsKey(sourceNodeName)){
+			Node<String> sourceNode = new Node(sourceNodeName);
+			for (int i=1;i<sentence.length;i++){
+				String[] linkData = sentence[i].split(distanceDelimeter);
+				String destNodeName = linkData[0];
+				Node destNode;
+				if (nodeMap.containsKey(destNodeName)){
+					destNode=nodeMap.get(destNodeName);
+				}
+				else {
+					destNode = new Node(destNodeName);
+				}
+				Link<Node,Number> newLink = new Link();
+				newLink.setSource(sourceNode);
+				newLink.setDestination(destNode);
+				sourceNode.addLink(newLink);
+				//System.out.println("The label is " +linkData[0]);
+				//System.out.println("The cost is " +linkData[1]);
+			}
+			nodeMap.put(sourceNodeName,sourceNode);
 		}
 	}
 	
@@ -29,6 +46,12 @@ public class GraphCreator {
 			if (!sentence[0].equals(testIndicator)){
 				createNode(sentence);
 			}
+		}
+				
+		for (String value : nodeMap.keySet()){
+			System.out.print("Node named : " +value);
+			System.out.println(" has " +nodeMap.get(value).getLinks().size() +" links");
+			
 		}
 		
 		System.out.println("I created " +nodeMap.size() +"nodes");

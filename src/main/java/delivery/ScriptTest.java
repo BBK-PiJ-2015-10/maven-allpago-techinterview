@@ -13,13 +13,9 @@ public class ScriptTest {
 
 	public static void main(String[] args) {
 		
-		Scanner sc = new Scanner(System.in);
-
-		String dirAddress = "C:\\Users\\YasserAlejandro\\Dropbox\\JobSearch\\InterviewPrep\\Allpago\\test\\03.csv";
-		
-		
-		System.out.println("Is this done");
-		
+		Node lond = new Node(1);
+		Node dub = new Node(1);
+		System.out.println(lond.equals(dub));
 		
 	
 
