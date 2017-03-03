@@ -13,7 +13,7 @@ public class Node<T> {
 		this.nodeID=nodeID;
 		links = new HashSet();
 	}
-	
+		
 	public T getnodeID(){
 		return this.nodeID;
 	}
@@ -43,6 +43,10 @@ public class Node<T> {
 		return otherNode.nodeID.equals(this.nodeID);
 	}
 	
+	@Override
+	public String toString(){
+		return nodeID.toString();
+	}
 
 
 }

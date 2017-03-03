@@ -11,6 +11,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 import delivery.GraphCreator;
+import delivery.GraphCreatorImpl;
+import delivery.DijkstraImpl;
 
 
 public class UseCaseTests {
@@ -30,7 +32,7 @@ public class UseCaseTests {
 	
 	@Test
 	public void testFileDirectory() {	
-		System.out.println("Please enter the location of your test directory");
+		//System.out.println("Please enter the location of your test directory");
 		//String dirAddress = manualScanner.nextLine();
 		String dirAddress = "C:\\Users\\YasserAlejandro\\Dropbox\\JobSearch\\InterviewPrep\\Allpago\\test";
 		dir=new File(dirAddress);
@@ -40,7 +42,6 @@ public class UseCaseTests {
 		File[] files = null;
 		Integer numberofFiles=0;
 		if (dirExist){
-			//System.out.println("I am here");
 			files = dir.listFiles();
 			numberofFiles=files.length;
 			assertTrue(numberofFiles>0);
@@ -55,8 +56,11 @@ public class UseCaseTests {
 					assertEquals(1,0);
 				}
 		
-				graphCreator = new GraphCreator();
-				graphCreator.captureInput(fileScanner);
+				graphCreator = new GraphCreatorImpl();
+				graphCreator.createGraph(fileScanner);
+				DijkstraImpl di = new DijkstraImpl(graphCreator.getGraph());
+				di.getMinDistance("A","G");
+				
 				
 			}
 			

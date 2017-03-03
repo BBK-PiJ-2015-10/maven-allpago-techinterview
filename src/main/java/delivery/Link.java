@@ -34,6 +34,11 @@ public class Link<T1,T2 extends Number> {
 		return null;
 	}
 	
+	public String toString(){
+		String result;
+		result ="From " +source.toString() +" to " +destination.toString() +" with a link of " +weight;
+		return result;
+	}
 	
 	
 
