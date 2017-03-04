@@ -1,6 +1,6 @@
 package delivery;
 
-import java.util.Scanner;
+//import java.util.Scanner;
 import java.util.Map;
 import java.text.NumberFormat;
 import java.util.HashMap;
@@ -9,9 +9,9 @@ import java.util.Iterator;
 
 public class GraphCreatorImpl implements GraphCreator {
 	
-	private String testIndicator = "@"; 
+	//private String testIndicator = "@"; 
 	
-	private String nodeDelimiter = ",";
+	//private String nodeDelimiter = ",";
 	
 	private String distanceDelimeter = ":";
 	
@@ -21,6 +21,7 @@ public class GraphCreatorImpl implements GraphCreator {
 		return this.nodeMap;
 	}
 	
+	/*
 	public void createGraph(Scanner sc){
 		while(sc.hasNext()){
 			String [] sentence = sc.next().split(nodeDelimiter);
@@ -28,6 +29,11 @@ public class GraphCreatorImpl implements GraphCreator {
 				createNodeandLinks(sentence);
 			}
 		}
+	}
+	*/
+	
+	public void feedGraph(String[] sentence){
+		createNodeandLinks(sentence);
 	}
 	
 	private void createNodeandLinks(String[] sentence){

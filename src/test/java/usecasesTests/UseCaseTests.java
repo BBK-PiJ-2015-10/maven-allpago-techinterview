@@ -6,15 +6,20 @@ import org.junit.Test;
 
 import java.util.Scanner;
 import java.io.File;
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.List;
+import java.util.ArrayList;
 
-import delivery.GraphCreator;
-import delivery.GraphCreatorImpl;
-import delivery.DijkstraImpl;
 import delivery.DeliveryCostEstimator;
+import delivery.InputManager;
 
+
+/*
+ * Need to move the responsability of the InputManager partion of strings to test manager
+ * and InputManager here.
+ * 
+ */
 public class UseCaseTests {
 	
 	private Scanner manualScanner = new Scanner(System.in);
@@ -27,9 +32,11 @@ public class UseCaseTests {
 	
 	private String[] names = {"yasser","alejandro","palacios","otero","otero"};
 	
-	private GraphCreator graphCreator;
-	
 	private DeliveryCostEstimator deliveryCostEstimator;
+	
+	private InputManager inputManager;
+	
+	private List<List<String>> testList;
 	
 	
 	@Test
@@ -55,20 +62,21 @@ public class UseCaseTests {
 					fileScanner = new Scanner(new FileReader(temp));
 				} catch (FileNotFoundException ex){
 					ex.printStackTrace();
-					assertEquals(1,0);
 				}
-		
-				//graphCreator = new GraphCreatorImpl();
-				//graphCreator.createGraph(fileScanner);
-				//DijkstraImpl di = new DijkstraImpl(graphCreator.getGraph());
-				//di.getMinDistance("A","G");
+				//deliveryCostEstimator = new DeliveryCostEstimator(fileScanner);
+				//deliveryCostEstimator.launchEstimator();
+				//System.out.println(fileScanner.next());
 				
-				deliveryCostEstimator = new DeliveryCostEstimator(fileScanner);
-				deliveryCostEstimator.launchEstimator();
-				System.out.println(deliveryCostEstimator.getEstimate("A","G"));
-				System.out.println(deliveryCostEstimator.getWeight(26,10,11,1));
+				inputManager = new InputManager(fileScanner);
+				//inputManager.print();
+				inputManager.processInput("@",",");
+				inputManager.startCalculators();
+				System.out.println(inputManager.getEstimate("A","G"));
+				System.out.println(inputManager.getWeight(26,10,11,2));
 				
-				
+				//System.out.println(deliveryCostEstimator.getEstimate("A","G"));
+				//System.out.println(deliveryCostEstimator.getWeight(26,10,11,1));
+			
 			}
 			
 			System.out.println("Ale Tonto");

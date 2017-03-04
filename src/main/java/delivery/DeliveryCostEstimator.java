@@ -1,6 +1,8 @@
 package delivery;
 
-import java.util.Scanner;
+//import java.util.Scanner;
+import java.text.DecimalFormat;
+import java.math.RoundingMode;
 
 public class DeliveryCostEstimator {
 	
@@ -12,25 +14,39 @@ public class DeliveryCostEstimator {
 	
 	private NormalizedWeightCalc normalizedWeightCalc;
 	
-	private Scanner sc;
+	//private Scanner sc;
 	
+	/*
 	public DeliveryCostEstimator(Scanner sc){
 		this.sc=sc;
 	}
+	*/
+	
+	public DeliveryCostEstimator(){
+		graphCreator = new GraphCreatorImpl();
+	}
 
+	/*
 	public void launchEstimator(){
 		loadEstimator();
 	}
+	*/
 	
-	private void loadEstimator(){
-		graphCreator = new GraphCreatorImpl();
-		graphCreator.createGraph(sc);
+	public void startCalculators(){
 		minDistanceCalculator = new DijkstraImpl(graphCreator.getGraph());
 		volumetricWeightCalc = new VolumetricWeightCalcImpl();
 		normalizedWeightCalc = new NormalizedWeightCalcImpl(volumetricWeightCalc);
 	}
 	
-	public Double getEstimate(String from, String to,Integer width,Integer length,Integer height, Integer weight){
+	private void loadEstimator(){
+		//graphCreator = new GraphCreatorImpl();
+		//graphCreator.createGraph(sc);
+		//minDistanceCalculator = new DijkstraImpl(graphCreator.getGraph());
+		//volumetricWeightCalc = new VolumetricWeightCalcImpl();
+		//normalizedWeightCalc = new NormalizedWeightCalcImpl(volumetricWeightCalc);
+	}
+	
+	public Double getRealEstimate(String from, String to,Integer width,Integer length,Integer height, Integer weight){
 		Integer notConnected = Integer.MAX_VALUE;
 		if(notConnected.doubleValue()==getEstimate(from,to)){
 			return -1.0;
@@ -47,7 +63,24 @@ public class DeliveryCostEstimator {
 		return normalizedWeightCalc.calculateVolWeight(width, length, height, weight);
 	}
 	
+	public String getEstimate(String from, String to,Integer width,Integer length,Integer height, Integer weight){
+		try {
+			Double estimate = getRealEstimate(from,to,width,length,height,weight);
+			if (estimate==-1.0){
+				return "~";
+			}
+			DecimalFormat df = new DecimalFormat("#.##");
+			df.setRoundingMode(RoundingMode.HALF_EVEN);
+		    return df.format(estimate);
+		} catch (Exception ex){
+			ex.printStackTrace();
+		}
+		return "An exception has ocurred";
+	}
 	
+	public void feedInput(String [] sentence){
+		graphCreator.feedGraph(sentence);
+	}
 	
 	
 	
