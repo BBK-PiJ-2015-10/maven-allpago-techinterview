@@ -18,7 +18,7 @@ public class DeliveryCostEstimator {
 		this.sc=sc;
 	}
 
-	public void launchEstimates(){
+	public void launchEstimator(){
 		loadEstimator();
 	}
 	
@@ -31,11 +31,21 @@ public class DeliveryCostEstimator {
 	}
 	
 	public Double getEstimate(String from, String to,Integer width,Integer length,Integer height, Integer weight){
-		Double estWeight = normalizedWeightCalc.calculateVolWeight(width, length, height, weight);
-		Double estDistance = minDistanceCalculator.getMinDistance(from,to).doubleValue();
-		return estWeight*estDistance;
+		Integer notConnected = Integer.MAX_VALUE;
+		if(notConnected.doubleValue()==getEstimate(from,to)){
+			return -1.0;
+		}
+		return getEstimate(from,to)*getWeight(width,length,height,weight);
 	}
 	
+
+	public Double getEstimate(String from, String to){
+		return minDistanceCalculator.getMinDistance(from,to).doubleValue();
+	}
+	
+	public Double getWeight (Integer width,Integer length,Integer height, Integer weight){
+		return normalizedWeightCalc.calculateVolWeight(width, length, height, weight);
+	}
 	
 	
 	

@@ -13,7 +13,7 @@ import java.io.FileReader;
 import delivery.GraphCreator;
 import delivery.GraphCreatorImpl;
 import delivery.DijkstraImpl;
-
+import delivery.DeliveryCostEstimator;
 
 public class UseCaseTests {
 	
@@ -28,6 +28,8 @@ public class UseCaseTests {
 	private String[] names = {"yasser","alejandro","palacios","otero","otero"};
 	
 	private GraphCreator graphCreator;
+	
+	private DeliveryCostEstimator deliveryCostEstimator;
 	
 	
 	@Test
@@ -56,14 +58,20 @@ public class UseCaseTests {
 					assertEquals(1,0);
 				}
 		
-				graphCreator = new GraphCreatorImpl();
-				graphCreator.createGraph(fileScanner);
-				DijkstraImpl di = new DijkstraImpl(graphCreator.getGraph());
-				di.getMinDistance("A","G");
+				//graphCreator = new GraphCreatorImpl();
+				//graphCreator.createGraph(fileScanner);
+				//DijkstraImpl di = new DijkstraImpl(graphCreator.getGraph());
+				//di.getMinDistance("A","G");
+				
+				deliveryCostEstimator = new DeliveryCostEstimator(fileScanner);
+				deliveryCostEstimator.launchEstimator();
+				System.out.println(deliveryCostEstimator.getEstimate("A","G"));
+				System.out.println(deliveryCostEstimator.getWeight(26,10,11,1));
 				
 				
 			}
 			
+			System.out.println("Ale Tonto");
 			
 			
 		}

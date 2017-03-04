@@ -9,7 +9,7 @@ public class TestScript {
 		
 		//System.out.println(calc.calculateVolWeight(25,20,21));
 		//System.out.println(calc.calculateVolWeight(10,10,11));
-		//System.out.println(calc.calculateVolWeight(21,21,21));
+		System.out.println(calc.calculateVolWeight(21,21,21));
 		
 		
 		NormalizedWeightCalc calcf = new NormalizedWeightCalcImpl(calc);
