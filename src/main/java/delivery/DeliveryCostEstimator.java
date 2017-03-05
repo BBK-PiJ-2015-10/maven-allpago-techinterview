@@ -73,7 +73,7 @@ public class DeliveryCostEstimator {
 			if (estimate==-1.0){
 				return "~";
 			}
-			DecimalFormat df = new DecimalFormat("#.##");
+			DecimalFormat df = new DecimalFormat("#.00");
 			df.setRoundingMode(RoundingMode.HALF_EVEN);
 		    return df.format(estimate);
 		} catch (Exception ex){

@@ -24,14 +24,14 @@ public class TestScript {
 	
 	public void run(){
 	
-		System.out.println(getEstimate(8.234));
-		System.out.println(getEstimate(8.2));
+		System.out.println(getEstimate(8.236));
+		System.out.println(getEstimate(8.1));
 		
 		
 	}
 	
 	public String getEstimate(Double number){
-			DecimalFormat df = new DecimalFormat("#.##");
+			DecimalFormat df = new DecimalFormat("#.00");
 			df.setRoundingMode(RoundingMode.HALF_EVEN);
 		    return df.format(number);
 		
