@@ -38,6 +38,21 @@ public class UseCaseTests {
 	
 	private List<List<String>> testList;
 	
+	private String dimDelimiter ="x";
+	
+	public int getDimension(String sentence,int pos){
+		String [] dimensions = sentence.split(dimDelimiter);
+		return Integer.parseInt(dimensions[pos]);
+	}
+	
+	public boolean evaluate(String [] sentence,DeliveryCostEstimator deliveryCostEstimator){
+		deliveryCostEstimator.getEstimate("ME",sentence[1],getDimension(sentence[2],0),getDimension(sentence[2],1),
+				getDimension(sentence[2],2),getDimension(sentence[2],3));		
+		return true;
+	}
+	
+	
+	
 	
 	@Test
 	public void testFileDirectory() {	
@@ -85,19 +100,27 @@ public class UseCaseTests {
 		}
 		
 		
-		
-		
-		
+		//public boolean testDelivery(String[] sentence,DeliveryCostEstimator deliveryCostEstimator){
+			
+			//return false;
+		//}
 		
 		
 	}
 	
 	
 	//@Test
-	public void testFile(String first, String second){
-		//value1 = "Alejandro";
-		//value2 = "Alejandro";
-		assertEquals(first,second);
+	public void testIndividualEstimate(String[] sentence, DeliveryCostEstimator deliveryCostEstimator){
+		String actualResult= deliveryCostEstimator.getEstimate("ME",sentence[1],getDimension(sentence[2],0),getDimension(sentence[2],1),
+				getDimension(sentence[2],2),getDimension(sentence[2],3));	
+		String expectedResult= sentence[3];
+		assertEquals(actualResult,expectedResult);
+		assertEquals(2,2);
+	}
+	
+	public Integer getLength(String[] sentence){
+		
+		return 1;
 	}
 	
 	
