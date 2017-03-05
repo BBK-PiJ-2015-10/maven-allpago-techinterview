@@ -10,7 +10,7 @@ public class NormalizedWeightCalcImpl implements NormalizedWeightCalc {
 
 	@Override
 	public Double calculateVolWeight(Integer width, Integer length, Integer height, Integer weight) {
-		Double realWeight = weight.doubleValue();
+		Double realWeight = weight.doubleValue()/1000;
 		Double volWeight = volumetricWeightcalc.calculateVolWeight(width, length, height);
 		if (volWeight>realWeight){
 			return volWeight;

@@ -34,7 +34,7 @@ public class UseCaseTests {
 	
 	private DeliveryCostEstimator deliveryCostEstimator;
 	
-	private InputManager inputManager;
+	//private InputManager inputManager;
 	
 	private List<List<String>> testList;
 	
@@ -45,10 +45,33 @@ public class UseCaseTests {
 		return Integer.parseInt(dimensions[pos]);
 	}
 	
-	public boolean evaluate(String [] sentence,DeliveryCostEstimator deliveryCostEstimator){
-		deliveryCostEstimator.getEstimate("ME",sentence[1],getDimension(sentence[2],0),getDimension(sentence[2],1),
-				getDimension(sentence[2],2),getDimension(sentence[2],3));		
-		return true;
+	public void processInput(String testIndicator,String delimiter,Scanner scanner){
+		this.deliveryCostEstimator = new DeliveryCostEstimator();
+		int calcStarter =0;
+		while(scanner.hasNext()){
+			String [] sentence = scanner.next().split(delimiter);
+			if(!sentence[0].equals(testIndicator)){
+				deliveryCostEstimator.feedInput(sentence);
+			}
+			else {
+				calcStarter++;
+				if(calcStarter==1){
+					deliveryCostEstimator.startCalculators();
+				}
+				testIndividualEstimate(sentence,deliveryCostEstimator);
+			}		
+		}
+		
+		//System.out.println(getEstimate("ME","Adam"));
+	}
+		
+
+	public Double getEstimate(String from,String to){
+		return deliveryCostEstimator.getEstimate(from,to);
+	}
+	
+	public Double getWeight (Integer width,Integer length,Integer height, Integer weight){
+		return deliveryCostEstimator.getWeight(width, length, height, weight);
 	}
 	
 	
@@ -78,23 +101,27 @@ public class UseCaseTests {
 				} catch (FileNotFoundException ex){
 					ex.printStackTrace();
 				}
+				processInput("@",",",fileScanner);
+				
+				
+				
 				//deliveryCostEstimator = new DeliveryCostEstimator(fileScanner);
 				//deliveryCostEstimator.launchEstimator();
 				//System.out.println(fileScanner.next());
 				
-				inputManager = new InputManager(fileScanner);
+				//inputManager = new InputManager(fileScanner);
 				//inputManager.print();
-				inputManager.processInput("@",",");
-				inputManager.startCalculators();
-				System.out.println(inputManager.getEstimate("A","G"));
-				System.out.println(inputManager.getWeight(26,10,11,2));
+				//inputManager.processInput("@",",");
+				//inputManager.startCalculators();
+				//System.out.println(inputManager.getEstimate("A","G"));
+				//System.out.println(inputManager.getWeight(26,10,11,2));
 				
 				//System.out.println(deliveryCostEstimator.getEstimate("A","G"));
 				//System.out.println(deliveryCostEstimator.getWeight(26,10,11,1));
 			
 			}
 			
-			System.out.println("Ale Tonto");
+			//System.out.println("Ale Tonto");
 			
 			
 		}
@@ -111,17 +138,14 @@ public class UseCaseTests {
 	
 	//@Test
 	public void testIndividualEstimate(String[] sentence, DeliveryCostEstimator deliveryCostEstimator){
+		String target = sentence[1];
+		System.out.println("Testing from ME to " +target);
 		String actualResult= deliveryCostEstimator.getEstimate("ME",sentence[1],getDimension(sentence[2],0),getDimension(sentence[2],1),
 				getDimension(sentence[2],2),getDimension(sentence[2],3));	
 		String expectedResult= sentence[3];
-		assertEquals(actualResult,expectedResult);
-		assertEquals(2,2);
+		assertEquals(expectedResult,actualResult);
 	}
 	
-	public Integer getLength(String[] sentence){
-		
-		return 1;
-	}
 	
 	
 

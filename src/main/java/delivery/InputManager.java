@@ -10,8 +10,6 @@ public class InputManager {
 	
 	private DeliveryCostEstimator deliveryCostEstimator;
 	
-	private TestManager testManager;
-	
 	public InputManager (Scanner scanner){
 		this.scanner=scanner;
 		//this.deliveryCostEstimator = new DeliveryCostEstimator();
@@ -19,7 +17,6 @@ public class InputManager {
 	
 	public void processInput(String testIndicator,String delimiter){
 		this.deliveryCostEstimator = new DeliveryCostEstimator();
-		this.testManager = new TestManager();
 		while(scanner.hasNext()){
 			String [] sentence = scanner.next().split(delimiter);
 			if (!sentence[0].equals(testIndicator)){
