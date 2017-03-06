@@ -66,7 +66,7 @@ public class DeliveryCostEstimator {
 		} catch (Exception ex){
 			ex.printStackTrace();
 		}
-		return "An exception has ocurred";
+		return "An exception has ocurred. Please review your input data.";
 	}
 	
 	public void feedInput(String [] sentence){

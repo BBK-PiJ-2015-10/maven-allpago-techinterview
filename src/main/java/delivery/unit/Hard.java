@@ -1,6 +1,6 @@
 package delivery.unit;
 
-public class Hard<T extends Number> {
+public class Hard <T extends Number> {
 
 	private T hardUnit;
 	

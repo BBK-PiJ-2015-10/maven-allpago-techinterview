@@ -16,7 +16,7 @@ import java.util.ArrayList;
 /*
  * 
  */
-public class UseCaseTests {
+public class UseCaseTestSavedUnitTests {
 	
 	private Scanner manualScanner = new Scanner(System.in);
 	
@@ -29,8 +29,7 @@ public class UseCaseTests {
 	private String dimDelimiter ="x";
 	
 	private List<String> failedTest;
-	
-	
+		
 	public int getDimension(String sentence,int pos){
 		String [] dimensions = sentence.split(dimDelimiter);
 		return Integer.parseInt(dimensions[pos]);
@@ -70,18 +69,24 @@ public class UseCaseTests {
 	@Test
 	public void testFileDirectory() {	
 		failedTest = new ArrayList();
-		System.out.println("Please enter the location of your test directory");
-		String dirAddress = manualScanner.nextLine();
-		//String dirAddress = "C:\\Users\\YasserAlejandro\\Dropbox\\JobSearch\\InterviewPrep\\Allpago\\test";
+		//System.out.println("Please enter the location of your test directory");
+		String dirAddress ="./src/test/resources/pagofiles";
+		//String dirAddress = manualScanner.nextLine();
 		dir=new File(dirAddress);
 		Boolean dirExist;
 		dirExist=dir.exists();
+		if(!dirExist){
+			System.out.println("Incorrect directory address input. Please re-run test");
+		}
 		assertEquals(true,dirExist);
 		File[] files = null;
 		Integer numberofFiles=0;
 		if (dirExist){
 			files = dir.listFiles();
 			numberofFiles=files.length;
+			if(numberofFiles<1){
+				System.out.println("The directory is empty. Please load files in the directory");
+			}
 			assertTrue(numberofFiles>0);
 		}
 		if (numberofFiles>0){
