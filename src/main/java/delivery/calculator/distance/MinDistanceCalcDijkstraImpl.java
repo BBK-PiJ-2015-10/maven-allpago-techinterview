@@ -11,6 +11,14 @@ import delivery.graph.PrioNode;
 
 import delivery.unit.Hard;
 
+/**
+ * @author Alejandro
+ * 
+ * An implementation of the MinDistanceCalc interface. It leverages a Map to
+ * keep track of the distance calculations between the starting node and each
+ * node of the graph. A priority queue is utilized the facilitate the navigation
+ * within graph and achieve the Dijkstra algorithm logic.
+ */
 public class MinDistanceCalcDijkstraImpl implements MinDistanceCalc {
 	
 	private Map<String,Node<String>> nodeMap = new HashMap<String,Node<String>>();
@@ -18,11 +26,20 @@ public class MinDistanceCalcDijkstraImpl implements MinDistanceCalc {
 	private Map<Node<String>,Hard<Number>> pathWeights = new HashMap<Node<String>,Hard<Number>>();
 	
 	private PriorityQueue<PrioNode> frontier = new PriorityQueue<PrioNode>(); 
-
+	
+	
+	/**
+	 * Constructor
+	 * @param nodeMap a Map that captures all the Nodes and Links within the graph
+	 */
 	public MinDistanceCalcDijkstraImpl(Map<String, Node<String>> nodeMap) {
 		this.nodeMap = nodeMap;
 	}
 	
+	/**
+	 * Provides the minimum distance between two node IDs.
+	 * 
+	 */
 	public Number getMinDistance(String startID, String targetID){
 		
 		//Setting the distance from the start node to infinity
@@ -32,6 +49,7 @@ public class MinDistanceCalcDijkstraImpl implements MinDistanceCalc {
 		Node startNode = nodeMap.get(startID);
 		pathWeights.put(startNode,new Hard(0));
 		
+		//Creates a PrioNode to enable the priority implementation of the PriorityQueue
 		PrioNode startp = new PrioNode(startNode);
 		frontier.add(new PrioNode(startNode,0));
 		
@@ -59,6 +77,7 @@ public class MinDistanceCalcDijkstraImpl implements MinDistanceCalc {
 		}
 		
 		return pathWeights.get(nodeMap.get(targetID)).getHardUnit().doubleValue();
+		
 	}
 	
 	

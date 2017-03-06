@@ -14,10 +14,10 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * @author Alejandro
+ * @authorAlejandro
  * 
  */
-public class UseCaseTestSavedUnitTests {
+public class UseCaseInteractiveUnitTests {
 	
 	private Scanner manualScanner = new Scanner(System.in);
 	
@@ -72,9 +72,8 @@ public class UseCaseTestSavedUnitTests {
 	@Test
 	public void testFileDirectory() {	
 		failedTest = new ArrayList();
-		//System.out.println("Please enter the location of your test directory");
-		String dirAddress ="./src/test/resources/pagofiles";
-		//String dirAddress = manualScanner.nextLine();
+		System.out.println("Please enter the location of your test directory");
+		String dirAddress = manualScanner.nextLine();
 		dir=new File(dirAddress);
 		Boolean dirExist;
 		dirExist=dir.exists();

@@ -3,10 +3,18 @@ package delivery.graph;
 import java.util.Set;
 import java.util.HashSet;
 
+/**
+ * 
+ * @author YasserAlejandro
+ * A Node represents a point in graph.
+ * @param <T> a Class that will serve as the nodeID.
+ */
 public class Node<T> {
 	
+	//An field that uniquely identifies a node.
 	private T nodeID;
 	
+	//The links that the node has
 	private Set<Link> links;
 	
 	public Node(T nodeID){

@@ -43,15 +43,15 @@ public class DeliveryCostEstimator {
 			return -1.0;
 		}
 		return Math.sqrt(getMinDistanceEstimate(from,to))*getWeight(width,length,height,weight);
+	
 	}
 	
-
-	private Double getMinDistanceEstimate(String from, String to){
-		return minDistanceCalculator.getMinDistance(from,to).doubleValue();
+	private Long getMinDistanceEstimate(String from, String to){	
+		return minDistanceCalculator.getMinDistance(from,to).longValue();
 	}
 	
 	private Double getWeight (Integer width,Integer length,Integer height, Integer weight){
-		return normalizedWeightCalc.calculateVolWeight(width, length, height, weight);
+		return normalizedWeightCalc.calculateNormalizedWeight(width, length, height, weight);
 	}
 	
 	public String getEstimate(String from, String to,Integer width,Integer length,Integer height, Integer weight){

@@ -4,15 +4,21 @@ import java.util.Map;
 import java.text.NumberFormat;
 import java.util.HashMap;
 import java.text.ParseException;
-import java.util.Iterator;
 
 import delivery.unit.Hard;
 
-
+/**
+ * 
+ * @author YasserAlejandro
+ *
+ * An implementation of the GraphCreator interface.
+ */
 public class GraphCreatorImpl implements GraphCreator {
-		
+	
+	//This field host the String used to delimeter the distance or weight between nodes
 	private String distanceDelimeter = ":";
 	
+	//A map holding all the unique Nodes in the graph.
 	private Map<String,Node<String>> nodeMap = new HashMap<String,Node<String>>();
 	
 	public Map<String,Node<String>> getGraph(){
@@ -23,6 +29,9 @@ public class GraphCreatorImpl implements GraphCreator {
 		createNodeandLinks(sentence);
 	}
 	
+	/*
+	 * Based on a String[] input it adds Node and its links into the graph
+	 */
 	private void createNodeandLinks(String[] sentence){
 		String sourceNodeName = sentence[0];
 		Node<String> sourceNode;
@@ -40,7 +49,7 @@ public class GraphCreatorImpl implements GraphCreator {
 			try {
 				linkWeight = new Hard(NumberFormat.getInstance().parse(linkData[1]));
 			} catch (ParseException ex){
-				System.out.println("Need to figure out how to handle this");
+				System.out.println("The argument entered is not a number");
 			}
 			Node<String> destNode;
 			if (nodeMap.containsKey(destNodeName)){
@@ -61,21 +70,7 @@ public class GraphCreatorImpl implements GraphCreator {
 	
 	}
 	
-	public void printGraphTopology(){
-		for (String value : nodeMap.keySet()){
-			System.out.print("Node named : " +value);
-			Node tempNode = nodeMap.get(value);
-			System.out.println(" has " +tempNode.getLinks().size() +" links");
-			System.out.println("which are ");
-			Iterator<Link<Node<String>,Hard<Integer>>> iter = tempNode.getLinks().iterator();
-			
-			while(iter.hasNext()){
-				Link<Node<String>,Hard<Integer>> temp = iter.next();
-				System.out.print("with a weight of " +temp.getWeight());
-				System.out.println(" to " +temp.getOther(tempNode).getnodeID());
-			}
-		}
-	}
+	
 	
 
 

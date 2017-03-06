@@ -1,5 +1,12 @@
 package delivery.graph;
 
+/**
+ * 
+ * @author YasserAlejandro
+ * 
+ * A class that encapsulates a Node in order to give it a priority dimension. It needs
+ * to implement the Comparable interface.
+ */
 public class PrioNode implements Comparable {
 	
 	private Node node;

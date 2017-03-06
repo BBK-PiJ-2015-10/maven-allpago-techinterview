@@ -2,7 +2,14 @@ package delivery.graph;
 
 import delivery.unit.Hard;
 
-	public class Link<T1,T2 extends Hard> {
+/**
+ * @author YasserAlejandro
+ * 
+ * A class that represents the Links or Edges in graph.
+ * @param <T1> a parameter that represents the points being connected.
+ * @param <T2> a parameter that represents the distance or weight between points.
+ */
+public class Link<T1,T2 extends Hard> {
 	
 	private T1 source;
 	
