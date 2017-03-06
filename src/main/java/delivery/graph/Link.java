@@ -2,8 +2,6 @@ package delivery.graph;
 
 import delivery.unit.Hard;
 
-//public class Link<T1,T2 extends Number> {
-
 	public class Link<T1,T2 extends Hard> {
 	
 	private T1 source;

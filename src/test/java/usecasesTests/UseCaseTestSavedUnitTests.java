@@ -1,4 +1,4 @@
-package usecasesTests;
+package usecasestests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -29,6 +29,8 @@ public class UseCaseTestSavedUnitTests {
 	private String dimDelimiter ="x";
 	
 	private List<String> failedTest;
+	
+	private String sourceNodeName="ME";
 		
 	public int getDimension(String sentence,int pos){
 		String [] dimensions = sentence.split(dimDelimiter);
@@ -54,7 +56,7 @@ public class UseCaseTestSavedUnitTests {
 	}
 	
 	public void testIndividualEstimate(String fileName,String[] sentence, DeliveryCostEstimator deliveryCostEstimator){
-		String actualResult= deliveryCostEstimator.getEstimate("ME",sentence[1],getDimension(sentence[2],0),getDimension(sentence[2],1),
+		String actualResult= deliveryCostEstimator.getEstimate(sourceNodeName,sentence[1],getDimension(sentence[2],0),getDimension(sentence[2],1),
 				getDimension(sentence[2],2),getDimension(sentence[2],3));	
 		String expectedResult= sentence[3];
 		if (!expectedResult.equals(actualResult)){
@@ -70,7 +72,8 @@ public class UseCaseTestSavedUnitTests {
 	public void testFileDirectory() {	
 		failedTest = new ArrayList();
 		//System.out.println("Please enter the location of your test directory");
-		String dirAddress ="./src/test/resources/pagofiles";
+		//String dirAddress ="./src/test/resources/pagofiles";
+		String dirAddress="C:\\Users\\YasserAlejandro\\Dropbox\\JobSearch\\InterviewPrep\\Allpago\\test";
 		//String dirAddress = manualScanner.nextLine();
 		dir=new File(dirAddress);
 		Boolean dirExist;
