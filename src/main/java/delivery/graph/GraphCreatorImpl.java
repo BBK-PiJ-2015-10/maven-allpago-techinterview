@@ -1,4 +1,4 @@
-package delivery;
+package delivery.graph;
 
 import java.util.Map;
 import java.text.NumberFormat;

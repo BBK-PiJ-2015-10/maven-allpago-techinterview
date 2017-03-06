@@ -1,4 +1,4 @@
-package delivery;
+package delivery.unit;
 
 public class Hard<T extends Number> {
 

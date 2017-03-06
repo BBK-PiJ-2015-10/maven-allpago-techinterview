@@ -1,4 +1,4 @@
-package delivery;
+package delivery.calculator.weight;
 
 public class NormalizedWeightCalcImpl implements NormalizedWeightCalc {
 

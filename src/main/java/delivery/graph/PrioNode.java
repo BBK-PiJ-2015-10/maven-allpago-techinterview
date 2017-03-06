@@ -1,4 +1,4 @@
-package delivery;
+package delivery.graph;
 
 public class PrioNode implements Comparable {
 	

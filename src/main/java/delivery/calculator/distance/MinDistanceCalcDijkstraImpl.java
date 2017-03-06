@@ -1,11 +1,15 @@
-package delivery;
+package delivery.calculator.distance;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Set;
 
-public class DijkstraImpl implements MinDistanceCalculator {
+import delivery.graph.Link;
+import delivery.graph.Node;
+import delivery.graph.PrioNode;
+
+public class MinDistanceCalcDijkstraImpl implements MinDistanceCalc {
 	
 	private Map<String,Node<String>> nodeMap = new HashMap<String,Node<String>>();
 	
@@ -13,7 +17,7 @@ public class DijkstraImpl implements MinDistanceCalculator {
 	
 	private PriorityQueue<PrioNode> frontier = new PriorityQueue<PrioNode>(); 
 
-	public DijkstraImpl(Map<String, Node<String>> nodeMap) {
+	public MinDistanceCalcDijkstraImpl(Map<String, Node<String>> nodeMap) {
 		this.nodeMap = nodeMap;
 	}
 	

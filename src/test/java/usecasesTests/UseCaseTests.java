@@ -70,9 +70,9 @@ public class UseCaseTests {
 	@Test
 	public void testFileDirectory() {	
 		failedTest = new ArrayList();
-		//System.out.println("Please enter the location of your test directory");
-		//String dirAddress = manualScanner.nextLine();
-		String dirAddress = "C:\\Users\\YasserAlejandro\\Dropbox\\JobSearch\\InterviewPrep\\Allpago\\test";
+		System.out.println("Please enter the location of your test directory");
+		String dirAddress = manualScanner.nextLine();
+		//String dirAddress = "C:\\Users\\YasserAlejandro\\Dropbox\\JobSearch\\InterviewPrep\\Allpago\\test";
 		dir=new File(dirAddress);
 		Boolean dirExist;
 		dirExist=dir.exists();

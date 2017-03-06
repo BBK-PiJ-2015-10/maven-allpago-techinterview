@@ -1,4 +1,4 @@
-package delivery;
+package delivery.graph;
 
 public class Link<T1,T2 extends Number> {
 	

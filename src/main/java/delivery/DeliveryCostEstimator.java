@@ -2,6 +2,16 @@ package delivery;
 
 
 import java.text.DecimalFormat;
+
+import delivery.calculator.distance.MinDistanceCalcDijkstraImpl;
+import delivery.calculator.distance.MinDistanceCalc;
+import delivery.calculator.weight.NormalizedWeightCalc;
+import delivery.calculator.weight.NormalizedWeightCalcImpl;
+import delivery.calculator.weight.VolumetricWeightCalc;
+import delivery.calculator.weight.VolumetricWeightCalcImpl;
+import delivery.graph.GraphCreator;
+import delivery.graph.GraphCreatorImpl;
+
 import java.math.RoundingMode;
 import java.lang.Math;
 
@@ -9,7 +19,7 @@ public class DeliveryCostEstimator {
 	
 	private GraphCreator graphCreator;
 	
-	private MinDistanceCalculator minDistanceCalculator;
+	private MinDistanceCalc minDistanceCalculator;
 	
 	private VolumetricWeightCalc volumetricWeightCalc;
 	
@@ -21,7 +31,7 @@ public class DeliveryCostEstimator {
 	}
 
 	public void startCalculators(){
-		minDistanceCalculator = new DijkstraImpl(graphCreator.getGraph());
+		minDistanceCalculator = new MinDistanceCalcDijkstraImpl(graphCreator.getGraph());
 		volumetricWeightCalc = new VolumetricWeightCalcImpl();
 		normalizedWeightCalc = new NormalizedWeightCalcImpl(volumetricWeightCalc);
 	}
