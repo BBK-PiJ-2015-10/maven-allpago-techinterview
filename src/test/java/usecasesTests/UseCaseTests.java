@@ -8,16 +8,9 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.List;
-import java.util.ArrayList;
-
 import delivery.DeliveryCostEstimator;
-import delivery.InputManager;
-
 
 /*
- * Need to move the responsability of the InputManager partion of strings to test manager
- * and InputManager here.
  * 
  */
 public class UseCaseTests {
@@ -28,15 +21,7 @@ public class UseCaseTests {
 	
 	private File dir;
 	
-	private String value2;
-	
-	private String[] names = {"yasser","alejandro","palacios","otero","otero"};
-	
 	private DeliveryCostEstimator deliveryCostEstimator;
-	
-	//private InputManager inputManager;
-	
-	private List<List<String>> testList;
 	
 	private String dimDelimiter ="x";
 	
@@ -45,7 +30,7 @@ public class UseCaseTests {
 		return Integer.parseInt(dimensions[pos]);
 	}
 	
-	public void processInput(String testIndicator,String delimiter,Scanner scanner){
+	public void processInput(String fileName,String testIndicator,String delimiter,Scanner scanner){
 		this.deliveryCostEstimator = new DeliveryCostEstimator();
 		int calcStarter =0;
 		while(scanner.hasNext()){
@@ -58,24 +43,12 @@ public class UseCaseTests {
 				if(calcStarter==1){
 					deliveryCostEstimator.startCalculators();
 				}
-				testIndividualEstimate(sentence,deliveryCostEstimator);
+				testIndividualEstimate(fileName,sentence,deliveryCostEstimator);
 			}		
 		}
-		
-		//System.out.println(getEstimate("ME","Adam"));
 	}
 		
 
-	public Double getEstimate(String from,String to){
-		return deliveryCostEstimator.getEstimate(from,to);
-	}
-	
-	public Double getWeight (Integer width,Integer length,Integer height, Integer weight){
-		return deliveryCostEstimator.getWeight(width, length, height, weight);
-	}
-	
-	
-	
 	
 	@Test
 	public void testFileDirectory() {	
@@ -101,48 +74,21 @@ public class UseCaseTests {
 				} catch (FileNotFoundException ex){
 					ex.printStackTrace();
 				}
-				processInput("@",",",fileScanner);
-				
-				
-				
-				//deliveryCostEstimator = new DeliveryCostEstimator(fileScanner);
-				//deliveryCostEstimator.launchEstimator();
-				//System.out.println(fileScanner.next());
-				
-				//inputManager = new InputManager(fileScanner);
-				//inputManager.print();
-				//inputManager.processInput("@",",");
-				//inputManager.startCalculators();
-				//System.out.println(inputManager.getEstimate("A","G"));
-				//System.out.println(inputManager.getWeight(26,10,11,2));
-				
-				//System.out.println(deliveryCostEstimator.getEstimate("A","G"));
-				//System.out.println(deliveryCostEstimator.getWeight(26,10,11,1));
-			
+				processInput(temp.getName(),"@",",",fileScanner);
 			}
-			
-			//System.out.println("Ale Tonto");
-			
-			
 		}
-		
-		
-		//public boolean testDelivery(String[] sentence,DeliveryCostEstimator deliveryCostEstimator){
-			
-			//return false;
-		//}
-		
-		
+				
 	}
 	
 	
-	//@Test
-	public void testIndividualEstimate(String[] sentence, DeliveryCostEstimator deliveryCostEstimator){
+	public void testIndividualEstimate(String fileName,String[] sentence, DeliveryCostEstimator deliveryCostEstimator){
 		String target = sentence[1];
-		System.out.println("Testing from ME to " +target);
+		System.out.print("Test Source: " +fileName + " -> From: Me To: "+sentence[1] +" ->");
 		String actualResult= deliveryCostEstimator.getEstimate("ME",sentence[1],getDimension(sentence[2],0),getDimension(sentence[2],1),
 				getDimension(sentence[2],2),getDimension(sentence[2],3));	
 		String expectedResult= sentence[3];
+		
+		System.out.println(" Expected : " +expectedResult + " Calculated : " +actualResult);
 		assertEquals(expectedResult,actualResult);
 	}
 	

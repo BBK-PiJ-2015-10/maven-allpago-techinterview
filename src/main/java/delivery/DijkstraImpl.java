@@ -54,10 +54,7 @@ public class DijkstraImpl implements MinDistanceCalculator {
 			
 		}
 		
-		//System.out.println(pathWeights.get(nodeMap.get(targetID)).doubleValue());
-		
 		return pathWeights.get(nodeMap.get(targetID)).doubleValue();
-		
 	}
 	
 	

@@ -8,8 +8,6 @@ public class VolumetricWeightCalcImpl implements VolumetricWeightCalc {
 	
 	private Double volWeight;
 	
-	
-	
 	@Override
 	public Double calculateVolWeight(Integer width, Integer length, Integer height) {
 		this.rawWeight=width*length*height/5000.0;
@@ -36,16 +34,6 @@ public class VolumetricWeightCalcImpl implements VolumetricWeightCalc {
 		
 	}
 	
-
-	
-
-	
-	
-	public void test(){
-		
-		
-	}
-
 	
 	
 }

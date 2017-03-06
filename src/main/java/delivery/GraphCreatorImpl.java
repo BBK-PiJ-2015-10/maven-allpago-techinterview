@@ -1,6 +1,5 @@
 package delivery;
 
-//import java.util.Scanner;
 import java.util.Map;
 import java.text.NumberFormat;
 import java.util.HashMap;
@@ -8,11 +7,7 @@ import java.text.ParseException;
 import java.util.Iterator;
 
 public class GraphCreatorImpl implements GraphCreator {
-	
-	//private String testIndicator = "@"; 
-	
-	//private String nodeDelimiter = ",";
-	
+		
 	private String distanceDelimeter = ":";
 	
 	private Map<String,Node<String>> nodeMap = new HashMap<String,Node<String>>();
@@ -20,17 +15,6 @@ public class GraphCreatorImpl implements GraphCreator {
 	public Map<String,Node<String>> getGraph(){
 		return this.nodeMap;
 	}
-	
-	/*
-	public void createGraph(Scanner sc){
-		while(sc.hasNext()){
-			String [] sentence = sc.next().split(nodeDelimiter);
-			if (!sentence[0].equals(testIndicator)){
-				createNodeandLinks(sentence);
-			}
-		}
-	}
-	*/
 	
 	public void feedGraph(String[] sentence){
 		createNodeandLinks(sentence);
@@ -87,7 +71,6 @@ public class GraphCreatorImpl implements GraphCreator {
 				System.out.println(" to " +temp.getOther(tempNode).getnodeID());
 			}
 		}
-		System.out.println("I created " +nodeMap.size() +" nodes");
 	}
 	
 
