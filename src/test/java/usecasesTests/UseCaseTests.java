@@ -10,6 +10,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import delivery.DeliveryCostEstimator;
 
+import java.util.List;
+import java.util.ArrayList;
+
 /*
  * 
  */
@@ -24,6 +27,9 @@ public class UseCaseTests {
 	private DeliveryCostEstimator deliveryCostEstimator;
 	
 	private String dimDelimiter ="x";
+	
+	private List<String> failedTest;
+	
 	
 	public int getDimension(String sentence,int pos){
 		String [] dimensions = sentence.split(dimDelimiter);
@@ -47,11 +53,23 @@ public class UseCaseTests {
 			}		
 		}
 	}
+	
+	public void testIndividualEstimate(String fileName,String[] sentence, DeliveryCostEstimator deliveryCostEstimator){
+		String actualResult= deliveryCostEstimator.getEstimate("ME",sentence[1],getDimension(sentence[2],0),getDimension(sentence[2],1),
+				getDimension(sentence[2],2),getDimension(sentence[2],3));	
+		String expectedResult= sentence[3];
+		if (!expectedResult.equals(actualResult)){
+			String failedMessage = "FAILED => Test Source: " +fileName + " -> From: Me To: "+sentence[1] +" ->"
+					+ " Expected : " +expectedResult + " Calculated : " +actualResult;
+			failedTest.add(failedMessage);
+		}
+	}
 		
 
 	
 	@Test
 	public void testFileDirectory() {	
+		failedTest = new ArrayList();
 		//System.out.println("Please enter the location of your test directory");
 		//String dirAddress = manualScanner.nextLine();
 		String dirAddress = "C:\\Users\\YasserAlejandro\\Dropbox\\JobSearch\\InterviewPrep\\Allpago\\test";
@@ -77,20 +95,19 @@ public class UseCaseTests {
 				processInput(temp.getName(),"@",",",fileScanner);
 			}
 		}
-				
+		if (!failedTest.isEmpty()){
+			for (String failedMessage : failedTest){
+				System.out.println(failedMessage);
+			}
+		}
+		else {
+			System.out.println("All tests have passed");
+		}
+		assertEquals(failedTest.isEmpty(),true);
 	}
 	
 	
-	public void testIndividualEstimate(String fileName,String[] sentence, DeliveryCostEstimator deliveryCostEstimator){
-		String target = sentence[1];
-		System.out.print("Test Source: " +fileName + " -> From: Me To: "+sentence[1] +" ->");
-		String actualResult= deliveryCostEstimator.getEstimate("ME",sentence[1],getDimension(sentence[2],0),getDimension(sentence[2],1),
-				getDimension(sentence[2],2),getDimension(sentence[2],3));	
-		String expectedResult= sentence[3];
-		
-		System.out.println(" Expected : " +expectedResult + " Calculated : " +actualResult);
-		assertEquals(expectedResult,actualResult);
-	}
+	
 	
 	
 	

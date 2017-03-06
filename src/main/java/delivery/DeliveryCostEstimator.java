@@ -27,20 +27,20 @@ public class DeliveryCostEstimator {
 	}
 	
 	
-	public Double getRealEstimate(String from, String to,Integer width,Integer length,Integer height, Integer weight){
+	private Double getRealEstimate(String from, String to,Integer width,Integer length,Integer height, Integer weight){
 		Integer notConnected = Integer.MAX_VALUE;
-		if(notConnected.doubleValue()==getEstimate(from,to)){
+		if(notConnected.doubleValue()==getMinDistanceEstimate(from,to)){
 			return -1.0;
 		}
-		return Math.sqrt(getEstimate(from,to))*getWeight(width,length,height,weight);
+		return Math.sqrt(getMinDistanceEstimate(from,to))*getWeight(width,length,height,weight);
 	}
 	
 
-	public Double getEstimate(String from, String to){
+	private Double getMinDistanceEstimate(String from, String to){
 		return minDistanceCalculator.getMinDistance(from,to).doubleValue();
 	}
 	
-	public Double getWeight (Integer width,Integer length,Integer height, Integer weight){
+	private Double getWeight (Integer width,Integer length,Integer height, Integer weight){
 		return normalizedWeightCalc.calculateVolWeight(width, length, height, weight);
 	}
 	
