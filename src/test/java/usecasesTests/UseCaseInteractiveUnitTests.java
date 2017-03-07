@@ -8,7 +8,7 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import delivery.DeliveryCostEstimator;
+import delivery.DeliveryCostEstimatorImpl;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ public class UseCaseInteractiveUnitTests {
 	
 	private File dir;
 	
-	private DeliveryCostEstimator deliveryCostEstimator;
+	private DeliveryCostEstimatorImpl deliveryCostEstimator;
 	
 	private String dimDelimiter ="x";
 	
@@ -39,7 +39,7 @@ public class UseCaseInteractiveUnitTests {
 	}
 	
 	public void processInput(String fileName,String testIndicator,String delimiter,Scanner scanner){
-		this.deliveryCostEstimator = new DeliveryCostEstimator();
+		this.deliveryCostEstimator = new DeliveryCostEstimatorImpl();
 		int calcStarter =0;
 		while(scanner.hasNext()){
 			String [] sentence = scanner.next().split(delimiter);
@@ -56,7 +56,7 @@ public class UseCaseInteractiveUnitTests {
 		}
 	}
 	
-	public void testIndividualEstimate(String fileName,String[] sentence, DeliveryCostEstimator deliveryCostEstimator){
+	public void testIndividualEstimate(String fileName,String[] sentence, DeliveryCostEstimatorImpl deliveryCostEstimator){
 		String actualResult= deliveryCostEstimator.getEstimate(sourceNodeName,sentence[1],getDimension(sentence[2],0),getDimension(sentence[2],1),
 				getDimension(sentence[2],2),getDimension(sentence[2],3));	
 		String expectedResult= sentence[3];

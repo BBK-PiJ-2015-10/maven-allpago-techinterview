@@ -1,79 +1,39 @@
 package delivery;
 
-
-import java.text.DecimalFormat;
-
-import delivery.calculator.distance.MinDistanceCalcDijkstraImpl;
-import delivery.calculator.distance.MinDistanceCalc;
-import delivery.calculator.weight.NormalizedWeightCalc;
-import delivery.calculator.weight.NormalizedWeightCalcImpl;
-import delivery.calculator.weight.VolumetricWeightCalc;
-import delivery.calculator.weight.VolumetricWeightCalcImpl;
-import delivery.graph.GraphCreator;
-import delivery.graph.GraphCreatorImpl;
-
-import java.math.RoundingMode;
-import java.lang.Math;
-
-public class DeliveryCostEstimator {
+/**
+ * 
+ * @author YasserAlejandro
+ *
+ * A class implementing the DeliveryCostEstimator interface needs to provide an estimate of the
+ * cost for shipping an item from one point to another point.
+ */
+public interface DeliveryCostEstimator {
 	
-	private GraphCreator graphCreator;
+	/**
+	 * Provides a method for data input.
+	 * 
+	 * @param sentence . First String contains the lead Node Element, subsequent Strings contains
+	 * the link information for that node.
+	 */
+	public void feedInput(String [] sentence);
 	
-	private MinDistanceCalc minDistanceCalculator;
+	/**
+	 * Starts the internal calculators being used. Method should be executed once input has been fed.
+	 */
+	public void startCalculators();
 	
-	private VolumetricWeightCalc volumetricWeightCalc;
-	
-	private NormalizedWeightCalc normalizedWeightCalc;
-	
-
-	public DeliveryCostEstimator(){
-		graphCreator = new GraphCreatorImpl();
-	}
-
-	public void startCalculators(){
-		minDistanceCalculator = new MinDistanceCalcDijkstraImpl(graphCreator.getGraph());
-		volumetricWeightCalc = new VolumetricWeightCalcImpl();
-		normalizedWeightCalc = new NormalizedWeightCalcImpl(volumetricWeightCalc);
-	}
-	
-	
-	private Double getRealEstimate(String from, String to,Integer width,Integer length,Integer height, Integer weight){
-		Integer notConnected = Integer.MAX_VALUE;
-		if(notConnected.doubleValue()==getMinDistanceEstimate(from,to)){
-			return -1.0;
-		}
-		return Math.sqrt(getMinDistanceEstimate(from,to))*getWeight(width,length,height,weight);
-	
-	}
-	
-	private Long getMinDistanceEstimate(String from, String to){	
-		return minDistanceCalculator.getMinDistance(from,to).longValue();
-	}
-	
-	private Double getWeight (Integer width,Integer length,Integer height, Integer weight){
-		return normalizedWeightCalc.calculateNormalizedWeight(width, length, height, weight);
-	}
-	
-	public String getEstimate(String from, String to,Integer width,Integer length,Integer height, Integer weight){
-		try {
-			Double estimate = getRealEstimate(from,to,width,length,height,weight);
-			if (estimate==-1.0){
-				return "~";
-			}
-			DecimalFormat df = new DecimalFormat("#.00");
-			df.setRoundingMode(RoundingMode.HALF_EVEN);
-		    return df.format(estimate);
-		} catch (Exception ex){
-			ex.printStackTrace();
-		}
-		return "An exception has ocurred. Please review your input data.";
-	}
-	
-	public void feedInput(String [] sentence){
-		graphCreator.feedGraph(sentence);
-	}
-	
-	
-	
+	/**
+	 * Provides a cost estimate for shipping an item.
+	 * @param from indicating the source point.
+	 * @param to indicating the destination point.
+	 * @param width indicating the width of the item being sent.
+	 * @param length indicating the length of the item being sent.
+	 * @param height indicating the height of the item being sent.
+	 * @param weight indicating the weight of the item being sent.
+	 * @return a String with the information on the shipping cost. If point is not reachable
+	 * it will return ~, if an exception occurs it will print stackTrace and return a message.
+	 */
+	public String getEstimate(String from, String to,Integer width,
+			Integer length,Integer height, Integer weight);
 
 }

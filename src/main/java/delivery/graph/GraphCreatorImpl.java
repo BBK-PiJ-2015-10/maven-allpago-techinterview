@@ -11,7 +11,9 @@ import delivery.unit.Hard;
  * 
  * @author YasserAlejandro
  *
- * An implementation of the GraphCreator interface.
+ * An implementation of the GraphCreator interface. Utilizing class Node<String> as Nodes 
+ * and class Link<Node<String>,Hard<Number>> as Links. It assumes weight or distance
+ * information. 
  */
 public class GraphCreatorImpl implements GraphCreator {
 	
@@ -25,6 +27,17 @@ public class GraphCreatorImpl implements GraphCreator {
 		return this.nodeMap;
 	}
 	
+	/**
+	 * @see delivery.graph.GraphCreator#setDistanceDelimeter(java.lang.String)
+	 */
+	@Override
+	public void setDistanceDelimeter(String distanceDelimeter) {
+		this.distanceDelimeter=distanceDelimeter;
+	}
+	
+	/**
+	 * @see delivery.graph.GraphCreator#feedGraph(java.lang.String[])
+	 */
 	public void feedGraph(String[] sentence){
 		createNodeandLinks(sentence);
 	}
@@ -69,6 +82,8 @@ public class GraphCreatorImpl implements GraphCreator {
 		nodeMap.put(sourceNodeName,sourceNode);
 	
 	}
+
+	
 	
 	
 	
