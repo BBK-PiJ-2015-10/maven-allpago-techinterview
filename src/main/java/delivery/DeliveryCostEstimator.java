@@ -1,7 +1,6 @@
 package delivery;
 
 /**
- * 
  * @author YasserAlejandro
  *
  * A class implementing the DeliveryCostEstimator interface needs to provide an estimate of the

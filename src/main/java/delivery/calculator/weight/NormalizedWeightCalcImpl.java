@@ -1,7 +1,7 @@
 package delivery.calculator.weight;
 
 /**
- * @author Alejandro
+ * @author YasserAlejandro
  * 
  * An implementation of the NormalizedWeightCalc interface. It leverages a 
  * volumetric weight calculator as a helper.

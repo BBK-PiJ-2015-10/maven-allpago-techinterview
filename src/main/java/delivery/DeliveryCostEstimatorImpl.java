@@ -16,7 +16,6 @@ import java.math.RoundingMode;
 import java.lang.Math;
 
 /**
- * 
  * @author YasserAlejandro
  * 
  * A class implementing the DeliveryCostEstimator interface. Internally it leverages

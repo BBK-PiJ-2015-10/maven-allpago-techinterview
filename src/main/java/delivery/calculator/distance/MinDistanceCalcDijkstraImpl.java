@@ -12,7 +12,7 @@ import delivery.graph.PrioNode;
 import delivery.unit.Hard;
 
 /**
- * @author Alejandro
+ * @author YasserAlejandro
  * 
  * An implementation of the MinDistanceCalc interface. It leverages a Map to
  * keep track of the distance calculations between the starting node and each

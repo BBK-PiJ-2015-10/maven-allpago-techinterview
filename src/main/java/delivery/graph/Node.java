@@ -4,8 +4,8 @@ import java.util.Set;
 import java.util.HashSet;
 
 /**
- * 
  * @author YasserAlejandro
+ * 
  * A Node represents a point in graph.
  * @param <T> a Class that will serve as the nodeID.
  */

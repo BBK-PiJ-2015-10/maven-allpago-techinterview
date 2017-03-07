@@ -1,7 +1,7 @@
 package delivery.calculator.weight;
 
 /**
- * @author Alejandro
+ * @author YasserAlejandro
  * 
  * A class implementing the NormalizedWeightCalc needs to provide the Normalized Weight of an object.
  * The normalized weight is the larger of the volumetric weight of an object and its actual weight.

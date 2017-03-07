@@ -1,7 +1,7 @@
 package delivery.calculator.distance;
 
 /**
- * @author Alejandro
+ * @author YasserAlejandro
  * 
  * A class that implements MinDistanceCalc provides the minimal distance between
  * two points in a graph.

@@ -1,8 +1,8 @@
 package delivery.unit;
 
 /**
- * 
  * @author YasserAlejandro
+ * 
  * A Hard represents a unit of measurement to capture the difficulty of sending
  * a package from one point to another point.
  * @param <T> any class that extends the Number class.

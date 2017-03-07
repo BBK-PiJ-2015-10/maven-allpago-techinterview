@@ -1,7 +1,7 @@
 package delivery.calculator.weight;
 
 /** 
- * @author Alejandro
+ * @author YasserAlejandro
  * 
  * A class implementing the VolumetricWeightCalc interface needs to provide the volumetric
  * weight equivalent of an object based on its volume.
