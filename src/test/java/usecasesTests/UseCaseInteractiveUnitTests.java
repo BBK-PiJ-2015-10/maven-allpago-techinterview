@@ -8,6 +8,7 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import delivery.DeliveryCostEstimator;
 import delivery.DeliveryCostEstimatorImpl;
 
 import java.util.List;
@@ -16,30 +17,50 @@ import java.util.ArrayList;
 /**
  * @authorAlejandro
  * 
+ * A test class that provides the ability to perform  test on a DeliveryCostEstimator object.
+ * It will request the user for a directory location where all tests are saved, it will read each
+ * file on that directory and feed the DeliveryCostEstimator with the input data and perform tests
+ * on each test data. If all tests pass a message will print on screen, if any tests fail, information
+ * about the failed test will be printed an a JUnit Failure window will be triggered. 
+ * 
  */
 public class UseCaseInteractiveUnitTests {
 	
+	//Scanner to capture user input
 	private Scanner manualScanner = new Scanner(System.in);
 	
+	//Scanner to capture input from fileDirectory
 	private Scanner fileScanner;
 	
+	//File object point to directory on disk
 	private File dir;
 	
-	private DeliveryCostEstimatorImpl deliveryCostEstimator;
+	private DeliveryCostEstimator deliveryCostEstimator;
 	
+	//Delimiter that separates the dimmensions on a String input
 	private String dimDelimiter ="x";
 	
 	private List<String> failedTest;
 	
+	//Starting sourceNodeName
 	private String sourceNodeName="ME";
-		
+	
+	
+	// Provides a particular dimension from a String based on a position, a sentence, and a delimeter 
 	public int getDimension(String sentence,int pos){
 		String [] dimensions = sentence.split(dimDelimiter);
 		return Integer.parseInt(dimensions[pos]);
 	}
 	
+	/*
+	 * Processes a particular file for testing.
+	 * @param fileName indicates the name of the file.
+	 * @param testIndicator indicates the String specifying the start of a test line.
+	 * @param delimiter indicates the String to use for separating the measuring units.
+	 * @param scanner to use to read data from file.
+	 */
 	public void processInput(String fileName,String testIndicator,String delimiter,Scanner scanner){
-		this.deliveryCostEstimator = new DeliveryCostEstimatorImpl();
+		deliveryCostEstimator = new DeliveryCostEstimatorImpl();
 		int calcStarter =0;
 		while(scanner.hasNext()){
 			String [] sentence = scanner.next().split(delimiter);
@@ -56,7 +77,13 @@ public class UseCaseInteractiveUnitTests {
 		}
 	}
 	
-	public void testIndividualEstimate(String fileName,String[] sentence, DeliveryCostEstimatorImpl deliveryCostEstimator){
+	/*
+	 * Executes an individual test
+	 * @param fileName indicates the name of the source file.
+	 * @param sentence indicates the sentence containing the test data.
+	 * @param deliveryCostEstimator contains the DeliveryCostEstimator object being tested.
+	 */
+	public void testIndividualEstimate(String fileName,String[] sentence, DeliveryCostEstimator deliveryCostEstimator){
 		String actualResult= deliveryCostEstimator.getEstimate(sourceNodeName,sentence[1],getDimension(sentence[2],0),getDimension(sentence[2],1),
 				getDimension(sentence[2],2),getDimension(sentence[2],3));	
 		String expectedResult= sentence[3];
