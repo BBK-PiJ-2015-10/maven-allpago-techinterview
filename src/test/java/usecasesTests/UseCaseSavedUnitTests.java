@@ -9,10 +9,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import delivery.DeliveryCostEstimator;
-import delivery.DeliveryCostEstimatorImpl;
+//import delivery.DeliveryCostEstimatorImpl;
 
 import java.util.List;
 import java.util.ArrayList;
+
+import delivery.DeliveryFactory;
 
 /**
  * @author YasserAlejandro
@@ -60,7 +62,8 @@ public class UseCaseSavedUnitTests {
 	 * @param scanner to use to read data from file.
 	 */
 	public void processInput(String fileName,String testIndicator,String delimiter,Scanner scanner){
-		deliveryCostEstimator = new DeliveryCostEstimatorImpl();
+		deliveryCostEstimator =(DeliveryCostEstimator) DeliveryFactory.getBeanFactory().getBean("estimator");
+		//deliveryCostEstimator = new DeliveryCostEstimatorImpl();
 		int calcStarter =0;
 		while(scanner.hasNext()){
 			String [] sentence = scanner.next().split(delimiter);

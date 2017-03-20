@@ -7,6 +7,8 @@ import java.text.ParseException;
 
 import delivery.unit.Hard;
 
+import org.springframework.stereotype.Component;
+
 /**
  * @author YasserAlejandro
  *
@@ -14,6 +16,7 @@ import delivery.unit.Hard;
  * and class Link<Node<String>,Hard<Number>> as Links. It assumes weight or distance
  * information. 
  */
+@Component
 public class GraphCreatorImpl implements GraphCreator {
 	
 	//This field host the String used to delimeter the distance or weight between nodes
@@ -25,6 +28,7 @@ public class GraphCreatorImpl implements GraphCreator {
 	public Map<String,Node<String>> getGraph(){
 		return this.nodeMap;
 	}
+	
 	
 	/**
 	 * @see delivery.graph.GraphCreator#setDistanceDelimeter(java.lang.String)

@@ -1,12 +1,14 @@
 package delivery.calculator.weight;
 
 import java.lang.Math.*;
+import org.springframework.stereotype.Component;
 
 /**
  * @author YasserAlejandro
  * 
  * A class that implements the VolumetricWeightCalc interface.
  */
+@Component
 public class VolumetricWeightCalcImpl implements VolumetricWeightCalc {
 		
 	private Double rawWeight;

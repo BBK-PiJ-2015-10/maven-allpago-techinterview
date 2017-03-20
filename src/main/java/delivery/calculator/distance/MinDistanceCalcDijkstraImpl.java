@@ -11,6 +11,8 @@ import delivery.graph.PrioNode;
 
 import delivery.unit.Hard;
 
+import org.springframework.stereotype.Component;
+
 /**
  * @author YasserAlejandro
  * 
@@ -19,6 +21,7 @@ import delivery.unit.Hard;
  * node of the graph. A priority queue is utilized the facilitate the navigation
  * within graph and achieve the Dijkstra algorithm logic.
  */
+@Component
 public class MinDistanceCalcDijkstraImpl implements MinDistanceCalc {
 	
 	private Map<String,Node<String>> nodeMap = new HashMap<String,Node<String>>();
@@ -32,9 +35,14 @@ public class MinDistanceCalcDijkstraImpl implements MinDistanceCalc {
 	 * Constructor
 	 * @param nodeMap a Map that captures all the Nodes and Links within the graph
 	 */
-	public MinDistanceCalcDijkstraImpl(Map<String, Node<String>> nodeMap) {
-		this.nodeMap = nodeMap;
+	//public MinDistanceCalcDijkstraImpl(Map<String, Node<String>> nodeMap) {
+		//this.nodeMap = nodeMap;
+	//}
+	
+	public void setGraph(Map<String,Node<String>> nodeMap){
+		this.nodeMap=nodeMap;
 	}
+	
 	
 	/**
 	 * Provides the minimum distance between two node IDs.

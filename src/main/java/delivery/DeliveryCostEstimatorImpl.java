@@ -15,6 +15,9 @@ import delivery.graph.GraphCreatorImpl;
 import java.math.RoundingMode;
 import java.lang.Math;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 /**
  * @author YasserAlejandro
  * 
@@ -22,19 +25,23 @@ import java.lang.Math;
  * a GraphCreator, a MinDistanceCalc, a VolumetricWeightCalc, and 
  * NormalizedWeightCalc objects.
  */
+@Component("estimator")
 public class DeliveryCostEstimatorImpl implements DeliveryCostEstimator {
 	
+	@Autowired
 	private GraphCreator graphCreator;
 	
+	@Autowired
 	private MinDistanceCalc minDistanceCalculator;
 	
-	private VolumetricWeightCalc volumetricWeightCalc;
+	//private VolumetricWeightCalc volumetricWeightCalc;
 	
+	@Autowired
 	private NormalizedWeightCalc normalizedWeightCalc;
 	
 	public DeliveryCostEstimatorImpl(){
-		graphCreator = new GraphCreatorImpl();
-		graphCreator.setDistanceDelimeter(":");
+		//graphCreator = new GraphCreatorImpl();
+		//graphCreator.setDistanceDelimeter(":");
 	}
 	
 	/**
@@ -43,9 +50,11 @@ public class DeliveryCostEstimatorImpl implements DeliveryCostEstimator {
 	 */
 	@Override
 	public void startCalculators(){
-		minDistanceCalculator = new MinDistanceCalcDijkstraImpl(graphCreator.getGraph());
-		volumetricWeightCalc = new VolumetricWeightCalcImpl();
-		normalizedWeightCalc = new NormalizedWeightCalcImpl(volumetricWeightCalc);
+		//minDistanceCalculator = new MinDistanceCalcDijkstraImpl(graphCreator.getGraph());
+		minDistanceCalculator.setGraph(graphCreator.getGraph());
+		//volumetricWeightCalc = new VolumetricWeightCalcImpl();
+		//normalizedWeightCalc = (NormalizedWeightCalc)DeliveryFactory.getBeanFactory().getBean("weightcalc");
+		//normalizedWeightCalc = new NormalizedWeightCalcImpl(volumetricWeightCalc);
 	}
 	
 	//Provides shipping cost estimate
@@ -89,7 +98,7 @@ public class DeliveryCostEstimatorImpl implements DeliveryCostEstimator {
 	}
 	
 	/**
-	 * Implement method from interface
+	 * Implements method from interface
 	 * @see delivery.DeliveryCostEstimator#feedInput(java.lang.String[])
 	 */
 	@Override

@@ -1,5 +1,9 @@
 package delivery.calculator.distance;
 
+import java.util.Map;
+
+import delivery.graph.Node;
+
 /**
  * @author YasserAlejandro
  * 
@@ -15,5 +19,7 @@ public interface MinDistanceCalc {
 	 * target node
 	 */
 	Number getMinDistance(String startID, String targetID);
+	
+	void setGraph(Map<String,Node<String>> nodeMap);
 	
 }
