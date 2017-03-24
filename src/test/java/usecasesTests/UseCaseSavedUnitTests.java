@@ -63,7 +63,6 @@ public class UseCaseSavedUnitTests {
 	 */
 	public void processInput(String fileName,String testIndicator,String delimiter,Scanner scanner){
 		deliveryCostEstimator =(DeliveryCostEstimator) DeliveryFactory.getBeanFactory().getBean("estimator");
-		//deliveryCostEstimator = new DeliveryCostEstimatorImpl();
 		int calcStarter =0;
 		while(scanner.hasNext()){
 			String [] sentence = scanner.next().split(delimiter);

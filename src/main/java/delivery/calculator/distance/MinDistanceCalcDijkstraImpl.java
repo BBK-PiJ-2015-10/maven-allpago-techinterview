@@ -28,17 +28,12 @@ public class MinDistanceCalcDijkstraImpl implements MinDistanceCalc {
 	
 	private Map<Node<String>,Hard<Number>> pathWeights = new HashMap<Node<String>,Hard<Number>>();
 	
-	private PriorityQueue<PrioNode> frontier = new PriorityQueue<PrioNode>(); 
-	
+	private PriorityQueue<PrioNode> navigator = new PriorityQueue<PrioNode>(); 
 	
 	/**
-	 * Constructor
-	 * @param nodeMap a Map that captures all the Nodes and Links within the graph
+	 * 
+	 * @see delivery.calculator.distance.MinDistanceCalc#setGraph(java.util.Map)
 	 */
-	//public MinDistanceCalcDijkstraImpl(Map<String, Node<String>> nodeMap) {
-		//this.nodeMap = nodeMap;
-	//}
-	
 	public void setGraph(Map<String,Node<String>> nodeMap){
 		this.nodeMap=nodeMap;
 	}
@@ -59,10 +54,10 @@ public class MinDistanceCalcDijkstraImpl implements MinDistanceCalc {
 		
 		//Creates a PrioNode to enable the priority implementation of the PriorityQueue
 		PrioNode startp = new PrioNode(startNode);
-		frontier.add(new PrioNode(startNode,0));
+		navigator.add(new PrioNode(startNode,0));
 		
-		while (frontier.size()!=0){
-			PrioNode current = frontier.poll();
+		while (navigator.size()!=0){
+			PrioNode current = navigator.poll();
 			Double cWeight =  pathWeights.get(current.getNode()).getHardUnit().doubleValue();
 			Set<Link> links = current.getNode().getLinks();
 			for (Link link : links){
@@ -71,14 +66,14 @@ public class MinDistanceCalcDijkstraImpl implements MinDistanceCalc {
 				Double existingWeight = pathWeights.get(other).getHardUnit().doubleValue();
 				if (existingWeight==Integer.MAX_VALUE){
 					pathWeights.put(other,new Hard(candidateWeight));
-					frontier.add(new PrioNode(other,candidateWeight));
+					navigator.add(new PrioNode(other,candidateWeight));
 				}
 				else if (candidateWeight<existingWeight){
 					pathWeights.put(other,new Hard(candidateWeight));
 					PrioNode temp = new PrioNode(other);
-					frontier.remove(temp);
+					navigator.remove(temp);
 					temp.setPriority(candidateWeight);
-					frontier.add(temp);
+					navigator.add(temp);
 				}
 			}
 			

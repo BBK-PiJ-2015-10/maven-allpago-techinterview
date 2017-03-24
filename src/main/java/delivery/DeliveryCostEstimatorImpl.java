@@ -22,8 +22,7 @@ import org.springframework.stereotype.Component;
  * @author YasserAlejandro
  * 
  * A class implementing the DeliveryCostEstimator interface. Internally it leverages
- * a GraphCreator, a MinDistanceCalc, a VolumetricWeightCalc, and 
- * NormalizedWeightCalc objects.
+ * a GraphCreator, a MinDistanceCalc, and NormalizedWeightCalc objects.
  */
 @Component("estimator")
 public class DeliveryCostEstimatorImpl implements DeliveryCostEstimator {
@@ -34,15 +33,9 @@ public class DeliveryCostEstimatorImpl implements DeliveryCostEstimator {
 	@Autowired
 	private MinDistanceCalc minDistanceCalculator;
 	
-	//private VolumetricWeightCalc volumetricWeightCalc;
-	
 	@Autowired
 	private NormalizedWeightCalc normalizedWeightCalc;
 	
-	public DeliveryCostEstimatorImpl(){
-		//graphCreator = new GraphCreatorImpl();
-		//graphCreator.setDistanceDelimeter(":");
-	}
 	
 	/**
 	 * Implement method from interface
@@ -50,11 +43,7 @@ public class DeliveryCostEstimatorImpl implements DeliveryCostEstimator {
 	 */
 	@Override
 	public void startCalculators(){
-		//minDistanceCalculator = new MinDistanceCalcDijkstraImpl(graphCreator.getGraph());
 		minDistanceCalculator.setGraph(graphCreator.getGraph());
-		//volumetricWeightCalc = new VolumetricWeightCalcImpl();
-		//normalizedWeightCalc = (NormalizedWeightCalc)DeliveryFactory.getBeanFactory().getBean("weightcalc");
-		//normalizedWeightCalc = new NormalizedWeightCalcImpl(volumetricWeightCalc);
 	}
 	
 	//Provides shipping cost estimate

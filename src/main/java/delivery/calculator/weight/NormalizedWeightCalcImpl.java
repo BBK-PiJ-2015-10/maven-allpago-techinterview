@@ -12,23 +12,9 @@ import org.springframework.stereotype.Component;
 @Component("weightcalc")
 public class NormalizedWeightCalcImpl implements NormalizedWeightCalc {
 
-		
-	//private VolumetricWeightCalc volumetricWeightcalc;
-	
-	/**
-	 * Constructor
-	 * @param volumetricWeightcalc represents a VolumetricWeightCalc object
-	 * being leverage by this class.
-	 */
-	//public NormalizedWeightCalcImpl(VolumetricWeightCalc volumetricWeightcalc) {
-		//this.volumetricWeightcalc = volumetricWeightcalc;
-	//}
-
 	@Autowired
 	private VolumetricWeightCalc volumetricWeightcalc = null;
-	
-	
-	
+		
 	/**
 	 * Implements method from interface.
 	 */

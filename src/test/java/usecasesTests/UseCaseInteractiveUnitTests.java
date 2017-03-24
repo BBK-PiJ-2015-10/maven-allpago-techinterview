@@ -62,7 +62,6 @@ public class UseCaseInteractiveUnitTests {
 	 * @param scanner to use to read data from file.
 	 */
 	public void processInput(String fileName,String testIndicator,String delimiter,Scanner scanner){
-		//deliveryCostEstimator = new DeliveryCostEstimatorImpl();
 		deliveryCostEstimator = ((DeliveryCostEstimator)DeliveryFactory.getBeanFactory().getBean("estimator"));
 		
 		int calcStarter =0;

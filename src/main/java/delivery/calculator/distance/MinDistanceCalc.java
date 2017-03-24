@@ -20,6 +20,10 @@ public interface MinDistanceCalc {
 	 */
 	Number getMinDistance(String startID, String targetID);
 	
+	/**
+	 * Sets the graph inside the Calculator.
+	 * @param nodeMap representing the graph.
+	 */
 	void setGraph(Map<String,Node<String>> nodeMap);
 	
 }
